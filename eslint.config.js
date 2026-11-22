@@ -9,7 +9,7 @@ export default tseslint.config(
   prettierConfig,
   {
     files: ["**/*.{ts,tsx}"],
-    ignores: ["node_modules", "dist", "build", ".turbo", "*.config.*", "eslint.config.js"],
+    ignores: ["node_modules", "dist", "build", ".turbo"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -27,8 +27,8 @@ export default tseslint.config(
     },
   },
   {
-    // Конфиг файлы без type-checked правил
-    files: ["eslint.config.js", "*.config.*"],
+    // JS/TS конфиг файлы — без type-checked правил
+    files: ["*.config.*", "*.config.js", "*.config.ts", "eslint.config.js"],
     ...tseslint.configs.disableTypeChecked,
   }
 );
