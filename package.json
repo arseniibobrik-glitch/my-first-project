@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "bun run --filter=web dev & bun run --filter=api dev & bun run --filter=cli dev",
     "build": "bun run --filter=web build && bun run --filter=api build && bun run --filter=cli build",
-    "lint": "bunx eslint . --ext .ts,.tsx",
+    "lint": "bunx eslint .",
     "format": "bunx prettier --write .",
     "typecheck": "bunx tsc --noEmit",
     "test": "bun test",
