@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@my-project/shared": ["packages/shared/src/index.ts"],
+      "@my-project/cli": ["apps/cli/src/index.ts"],
+      "@my-project/web": ["apps/web/src/main.tsx"],
+      "@my-project/api": ["apps/api/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build", ".turbo"]
+}

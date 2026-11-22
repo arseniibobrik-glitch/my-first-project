@@ -1,0 +1,38 @@
+{
+  "name": "my-first-project",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun run --filter=web dev & bun run --filter=api dev & bun run --filter=cli dev",
+    "build": "bun run --filter=web build && bun run --filter=api build && bun run --filter=cli build",
+    "lint": "bunx eslint . --ext .ts,.tsx",
+    "format": "bunx prettier --write .",
+    "typecheck": "bunx tsc --noEmit",
+    "test": "bun test",
+    "prepare": "bunx husky install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.5.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,md}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "packageManager": "bun@1.1.0"
+}
