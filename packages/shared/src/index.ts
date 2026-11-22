@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 /**
  * Общие типы и схемы валидации для всего монорепо
@@ -35,14 +35,14 @@ export const ApiResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =>
       .optional(),
   });
 
-export type ApiResponse<T> = z.infer<ReturnType<typeof ApiResponseSchema<z.ZodTypeAny>>>;
+export type ApiResponse = z.infer<ReturnType<typeof ApiResponseSchema<z.ZodTypeAny>>>;
 
 // Пагинация
 export const PaginationQuerySchema = z.object({
   page: z.coerce.number().int().positive().default(1),
   limit: z.coerce.number().int().positive().max(100).default(20),
   sort: z.string().optional(),
-  order: z.enum(["asc", "desc"]).default("desc"),
+  order: z.enum(['asc', 'desc']).default('desc'),
 });
 
 export type PaginationQuery = z.infer<typeof PaginationQuerySchema>;
@@ -83,7 +83,7 @@ export function createApiError(error: string, requestId?: string) {
 
 // Типы для окружения
 export const EnvSchema = z.object({
-  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().default(3000),
   DATABASE_URL: z.string().url().optional(),
   JWT_SECRET: z.string().min(32).optional(),

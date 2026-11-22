@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { createApiResponse, type User, type ApiResponse } from "@my-project/shared";
+import { useState, useEffect } from 'react';
+import { type User } from '@my-project/shared';
 
 function App() {
   const [users, setUsers] = useState<User[]>([]);
@@ -15,40 +15,40 @@ function App() {
       await new Promise((r) => setTimeout(r, 500));
       const mockUsers: User[] = [
         {
-          id: "550e8400-e29b-41d4-a716-446655440000",
-          email: "alice@example.com",
-          name: "Алиса",
-          avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=alice",
-          createdAt: "2024-01-15T10:30:00Z",
-          updatedAt: "2024-01-15T10:30:00Z",
+          id: '550e8400-e29b-41d4-a716-446655440000',
+          email: 'alice@example.com',
+          name: 'Алиса',
+          avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=alice',
+          createdAt: '2024-01-15T10:30:00Z',
+          updatedAt: '2024-01-15T10:30:00Z',
         },
         {
-          id: "550e8400-e29b-41d4-a716-446655440001",
-          email: "bob@example.com",
-          name: "Боб",
-          avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=bob",
-          createdAt: "2024-01-16T14:20:00Z",
-          updatedAt: "2024-01-16T14:20:00Z",
+          id: '550e8400-e29b-41d4-a716-446655440001',
+          email: 'bob@example.com',
+          name: 'Боб',
+          avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=bob',
+          createdAt: '2024-01-16T14:20:00Z',
+          updatedAt: '2024-01-16T14:20:00Z',
         },
         {
-          id: "550e8400-e29b-41d4-a716-446655440002",
-          email: "charlie@example.com",
-          name: "Чарли",
-          avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie",
-          createdAt: "2024-01-17T09:15:00Z",
-          updatedAt: "2024-01-17T09:15:00Z",
+          id: '550e8400-e29b-41d4-a716-446655440002',
+          email: 'charlie@example.com',
+          name: 'Чарли',
+          avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=charlie',
+          createdAt: '2024-01-17T09:15:00Z',
+          updatedAt: '2024-01-17T09:15:00Z',
         },
       ];
       setUsers(mockUsers);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Ошибка загрузки");
+      setError(e instanceof Error ? e.message : 'Ошибка загрузки');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchUsers();
+    void fetchUsers();
   }, []);
 
   return (
@@ -61,11 +61,11 @@ function App() {
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-500">Монорепо демо</span>
               <button
-                onClick={fetchUsers}
+                onClick={() => void fetchUsers()}
                 disabled={loading}
                 className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
               >
-                {loading ? "Загрузка..." : "Обновить"}
+                {loading ? 'Загрузка...' : 'Обновить'}
               </button>
             </div>
           </div>
@@ -75,7 +75,10 @@ function App() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg" role="alert">
+          <div
+            className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg"
+            role="alert"
+          >
             {error}
           </div>
         )}
@@ -96,11 +99,21 @@ function App() {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Аватар</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Имя</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Создан</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Действия</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Аватар
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Имя
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Создан
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Действия
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -121,7 +134,7 @@ function App() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-500">
-                        {new Date(user.createdAt).toLocaleDateString("ru-RU")}
+                        {new Date(user.createdAt).toLocaleDateString('ru-RU')}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -144,8 +157,12 @@ function App() {
 
         {/* Footer info */}
         <div className="mt-8 text-center text-sm text-gray-500">
-          <p>Работает на <strong>React + Vite + Tailwind</strong> в монорепо</p>
-          <p className="mt-1">Деплой: <strong>GitHub Pages</strong> (бесплатно)</p>
+          <p>
+            Работает на <strong>React + Vite + Tailwind</strong> в монорепо
+          </p>
+          <p className="mt-1">
+            Деплой: <strong>GitHub Pages</strong> (бесплатно)
+          </p>
         </div>
       </main>
     </div>
