@@ -3,13 +3,12 @@ import tseslint from "typescript-eslint";
 import prettierConfig from "eslint-config-prettier";
 
 export default tseslint.config(
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  prettierConfig,
+  // Base configs только для TS/TSX
   {
     files: ["**/*.{ts,tsx}"],
-    ignores: ["node_modules", "dist", "build", ".turbo"],
+    ...js.configs.recommended,
+    ...tseslint.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked,
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -26,9 +25,17 @@ export default tseslint.config(
       "@typescript-eslint/require-await": "warn",
     },
   },
+  // Prettier для всех файлов
   {
-    // JS/TS конфиг файлы — без type-checked правил
+    ...prettierConfig,
+  },
+  // Config files (JS/TS) — без type-checked
+  {
     files: ["*.config.*", "*.config.js", "*.config.ts", "eslint.config.js"],
     ...tseslint.configs.disableTypeChecked,
+  },
+  // Ignore patterns
+  {
+    ignores: ["node_modules", "dist", "build", ".turbo"],
   }
 );
