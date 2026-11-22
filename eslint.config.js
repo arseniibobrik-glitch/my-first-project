@@ -8,8 +8,8 @@ export default tseslint.config(
   ...tseslint.configs.recommendedTypeChecked,
   prettierConfig,
   {
-    files: ["**/*.{ts,tsx,js,jsx}"],
-    ignores: ["node_modules", "dist", "build", ".turbo", "*.config.*"],
+    files: ["**/*.{ts,tsx}"],
+    ignores: ["node_modules", "dist", "build", ".turbo", "*.config.*", "eslint.config.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -25,5 +25,10 @@ export default tseslint.config(
       "@typescript-eslint/no-misused-promises": "warn",
       "@typescript-eslint/require-await": "warn",
     },
+  },
+  {
+    // Конфиг файлы без type-checked правил
+    files: ["eslint.config.js", "*.config.*"],
+    ...tseslint.configs.disableTypeChecked,
   }
 );
